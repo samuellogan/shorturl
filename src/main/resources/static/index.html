@@ -7,13 +7,12 @@
 </head>
 <body>
     <div id="main-container">
-        <h1>URL Shortener</h1>
-        <div id="urlShortenerForm">
-            <input type="text" id="originalUrl" placeholder="Enter URL here...">
-            <button onclick="createShortUrl()">Shorten URL</button>
+        <div class="input-contain">
+            <input type="text" id="fullUrl" name="fullUrl" placeholder="Paste Full URL Here" autocomplete="off">
+            <div id="shortUrl" class="short-url"></div>
         </div>
-        <div id="shortenedUrl"></div>
-        <h2>Shortened URLs</h2>
+
+        <h2>History</h2>
         <div id="urlList"></div>
     </div>
 
