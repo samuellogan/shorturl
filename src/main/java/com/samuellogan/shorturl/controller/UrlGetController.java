@@ -21,7 +21,7 @@ public class UrlGetController {
         this.urlMappingService = urlMappingService;
     }
 
-    @GetMapping("/{shortUrlCode}")
+    @GetMapping("/{shortUrlCode:[a-zA-Z0-9]{8}}")
     public ResponseEntity<Object> getShortUrl(@PathVariable String shortUrlCode, HttpServletResponse response) {
         return urlMappingService.findByShortUrlCode(shortUrlCode)
                 .map(urlMapping -> {
