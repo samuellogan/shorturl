@@ -10,12 +10,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/urls") // Base path for all URLs handled by this controller
-public class UrlMappingController {
+public class UrlApiController {
 
     private final UrlMappingService urlMappingService;
 
     @Autowired
-    public UrlMappingController(UrlMappingService urlMappingService) {
+    public UrlApiController(UrlMappingService urlMappingService) {
         this.urlMappingService = urlMappingService;
     }
 
@@ -25,12 +25,7 @@ public class UrlMappingController {
         return ResponseEntity.ok(urlMapping);
     }
 
-    @GetMapping("/{shortUrlCode}")
-    public ResponseEntity<UrlMapping> getShortUrl(@PathVariable String shortUrlCode) {
-        return urlMappingService.findByShortUrlCode(shortUrlCode)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
+    
 
     @GetMapping
     public ResponseEntity<List<UrlMapping>> getAllShortUrls() {
