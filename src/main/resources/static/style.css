@@ -1,12 +1,60 @@
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+input[type="text"] {
+    width: 70%; /* Adjust the width as per your layout requirements */
+    padding: 10px;
+    margin-right: 10px; /* Adds a margin between the input and button */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px; /* Larger font size for better readability */
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1); /* Inner shadow for some depth */
+}
+
+button {
+    width: 20%; /* Adjust the width as per your layout requirements */
+    padding: 10px;
+    border: none; /* No border for the button */
+    border-radius: 5px; /* Rounded corners to match the input field */
+    background-color: #007bff; /* Bootstrap primary button color */
+    color: white;
+    font-size: 16px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Drop shadow for the button */
+    cursor: pointer; /* Changes cursor to indicate button is clickable */
+}
+
+button:hover {
+    background-color: #0056b3; /* Slightly darker color on hover */
+}
+
+/* Additional styles for alignment and responsiveness */
+#urlShortenerForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Ensure the input and button are on the same line and space is distributed */
+#urlShortenerForm input, #urlShortenerForm button {
+    flex: none; /* Do not allow the input and button to grow or shrink */
+}
+
+#main-container {
+    width: 70%; /* Set the width to 50% of the viewport */
+    margin: auto; /* This centers the container */
+    text-align: center; /* This centers the text inside the container */
 }
 
 #urlShortenerForm input {
     margin: 0 10px 0 0;
     padding: 10px;
-    width: 300px;
 }
 
 #urlShortenerForm button {
@@ -15,4 +63,39 @@ body {
 
 #shortenedUrl, #urlList {
     margin-top: 20px;
+}
+
+.url-entry {
+    display: flex; /* This defines a flex container; inline-level flex container */
+    align-items: center; /* This will vertically center the items in the container */
+    justify-content: space-between; /* This will add space between the flex items */
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.link-icon {
+    /* Assuming you have an icon */
+    margin-right: 10px; /* Adds some space between the icon and the text */
+}
+
+.url-info {
+    display: flex; /* Use flex layout here as well to align the texts next to each other */
+    flex-direction: column; /* Stack the short and original URL on top of each other */
+    flex-grow: 1; /* Allow this div to grow to fill the space available */
+    margin-right: 10px; /* Adds some space between the URL info and the stats */
+}
+
+.short-url, .original-url {
+    margin-right: 5px; /* Adds some space between the URL texts */
+}
+
+.url-stats {
+    /* You can also add flex here if you have multiple stat elements */
+}
+
+.delete-button {
+    /* Style your delete button as you wish */
 }

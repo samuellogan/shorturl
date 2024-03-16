@@ -25,6 +25,7 @@ public class UrlGetController {
     public ResponseEntity<Object> getShortUrl(@PathVariable String shortUrlCode, HttpServletResponse response) {
         return urlMappingService.findByShortUrlCode(shortUrlCode)
                 .map(urlMapping -> {
+                    urlMappingService.incrementVisitCount(shortUrlCode);
                     response.setHeader("Location", urlMapping.getOriginalUrl());
                     return new ResponseEntity<>(HttpStatus.MOVED_PERMANENTLY);
                 })

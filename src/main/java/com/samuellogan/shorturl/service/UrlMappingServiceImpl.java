@@ -7,6 +7,7 @@ import com.samuellogan.shorturl.repository.UrlMappingRepository;
 
 import jakarta.persistence.EntityNotFoundException;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -25,6 +26,8 @@ public class UrlMappingServiceImpl implements UrlMappingService {
     public UrlMapping createShortUrl(String originalUrl) {
         String shortUrlCode = generateShortUrlCode();
         UrlMapping urlMapping = new UrlMapping(originalUrl, shortUrlCode);
+        urlMapping.setDateCreated(new Date());
+        urlMapping.setVisitCount(0L);
         return urlMappingRepository.save(urlMapping);
     }
 
@@ -41,7 +44,7 @@ public class UrlMappingServiceImpl implements UrlMappingService {
     @Override
     public void incrementVisitCount(String shortUrlCode) {
         urlMappingRepository.findByShortUrlCode(shortUrlCode).ifPresent(urlMapping -> {
-            urlMapping.setVisitCount(urlMapping.getVisitCount() + 1);
+            urlMapping.setVisitCount(urlMapping.getVisitCount() + 1L);
             urlMappingRepository.save(urlMapping);
         });
     }
@@ -56,7 +59,6 @@ public class UrlMappingServiceImpl implements UrlMappingService {
 
 
     private String generateShortUrlCode() {
-        // Simple UUID-based implementation. Consider using a more sophisticated method.
         return UUID.randomUUID().toString().substring(0, 8);
     }
 }

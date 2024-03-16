@@ -1,11 +1,15 @@
 package com.samuellogan.shorturl.model;
 
+import java.util.Date;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Temporal;
+import jakarta.persistence.TemporalType;
 
 @Entity
 @Table(name = "url_mappings")
@@ -22,7 +26,10 @@ public class UrlMapping {
     private String shortUrlCode;
 
     @Column(nullable = false)
-    private Long visitCount = 0L; // Ensure this field is present
+    private Long visitCount = 0L;
+
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date dateCreated;
 
     @Column(nullable = false)
     private Boolean isDeleted = false;
@@ -34,7 +41,7 @@ public class UrlMapping {
     public UrlMapping(String originalUrl, String shortUrlCode) {
         this.originalUrl = originalUrl;
         this.shortUrlCode = shortUrlCode;
-        this.visitCount = 0L; // Initialize visitCount
+        this.visitCount = 0L;
         this.isDeleted = false;
     }
 
@@ -70,6 +77,14 @@ public class UrlMapping {
 
     public void setVisitCount(Long visitCount) { // And the corresponding setter
         this.visitCount = visitCount;
+    }
+
+    public Date getDateCreated() {
+        return dateCreated;
+    }
+
+    public void setDateCreated(Date dateCreated) {
+        this.dateCreated = dateCreated;
     }
 
     public Boolean getIsDeleted() {

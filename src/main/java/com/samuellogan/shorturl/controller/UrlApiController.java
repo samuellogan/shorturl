@@ -33,12 +33,6 @@ public class UrlApiController {
         return ResponseEntity.ok(urlMappings);
     }
 
-    @PostMapping("/{shortUrlCode}/increment")
-    public ResponseEntity<Void> incrementVisit(@PathVariable String shortUrlCode) {
-        urlMappingService.incrementVisitCount(shortUrlCode);
-        return ResponseEntity.ok().build();
-    }
-
     @DeleteMapping("/{shortUrlCode}")
     public ResponseEntity<Void> deleteShortUrl(@PathVariable String shortUrlCode) {
         urlMappingService.deleteUrlMapping(shortUrlCode);
