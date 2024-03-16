@@ -7,3 +7,6 @@ As each URL consists of an 8 digit string, there are a finite number of URLs. Th
 
 #### Use of memory-based database
 The URLs are stored in a h2database, which stores everything within the systems memory. As such, when the program is restarted, all URLs are forgotten. To resolve this, a more robust database such as SQLite should have been used, however wasn't as a result of time constraints.
+
+## Notes
+A unique aspect of utilizing HTTP's 301 (MOVED_PERMANENTLY) response is that browsers often cache this redirection. Consequently, when a user accesses the same shortcode again, the browser bypasses contacting the webserver until the cached redirection expires. This caching mechanism tends to track views on a per-user rather than a per-visit basis. However, this isn't entirely reliable as different browsers, private browsing sessions, cache clearing, or simply waiting for the cache to expire can lead to the same link registering as a new visit. To counteract this and ensure every visit is counted, one could implement Cache-Control: max-age=3600 or Cache-Control: no-cache, which forces the browser to refresh the cache more frequently or disregard caching altogether.
